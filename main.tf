@@ -35,10 +35,10 @@ resource "aws_instance" "MyLinuxNginx"{
 	}
 	
 	provisioner "local-exec" {
-		command = "echo Web-Server-1_public_ip:${aws_instance.MyLinux2.public_ip} >> ./ip_addresses.txt"
+		command = "echo Web-Server-2_public_ip:${aws_instance.MyLinux2.public_ip} >> ./ip_addresses.txt"
 	}
 	
 	provisioner "local-exec"{
-		command = "echo Web-Server-1_public_ip:${aws_instance.MyLinuxNginx.public_ip} >> ./ip_addresses.txt"
+		command = "echo Web-Server-Nginx-As-LB_public_ip:${aws_instance.MyLinuxNginx.public_ip} >> ./ip_addresses.txt"
 	}
 }
