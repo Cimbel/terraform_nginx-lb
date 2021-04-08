@@ -3,12 +3,12 @@ resource "aws_security_group" "my_server" {
 	description = "HTTP_AND_SSH"
 	
 	dynamic "ingress"{
-	for_each = ["22", "80"]
+	for_each = var.allow_ports
 	  content {
 		from_port   = ingress.value
 		to_port     = ingress.value
 		protocol    = "tcp"
-		cidr_blocks = ["0.0.0.0/0"]
+		cidr_blocks = var.cidr_block
 	  }
 	}
 
@@ -18,4 +18,6 @@ resource "aws_security_group" "my_server" {
 		protocol    = "-1"
 		cidr_blocks = ["0.0.0.0/0"]
 	}
+
+	tags = merge(var.common_tags, {Name = "SecurityGroup_BigBubble"})
 }
