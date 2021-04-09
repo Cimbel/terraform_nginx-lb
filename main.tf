@@ -41,14 +41,14 @@ resource "aws_instance" "MyLinuxNginx" {
   depends_on = [aws_instance.MyLinux1, aws_instance.MyLinux2]
 
   provisioner "local-exec" {
-    command = "echo Web-Server-1_public_ip:${aws_instance.MyLinux1.public_ip} > ./ip_addresses.txt"
+    command = "echo Web-Server-Apache-1_public_ip:${aws_instance.MyLinux1.public_ip} > ./ip_addresses.txt"
   }
 
   provisioner "local-exec" {
-    command = "echo Web-Server-1_public_ip:${aws_instance.MyLinux2.public_ip} >> ./ip_addresses.txt"
+    command = "echo Web-Server-Apache-2_public_ip:${aws_instance.MyLinux2.public_ip} >> ./ip_addresses.txt"
   }
 
   provisioner "local-exec" {
-    command = "echo Web-Server-1_public_ip:${aws_instance.MyLinuxNginx.public_ip} >> ./ip_addresses.txt"
+    command = "echo Web-Server-Nginx_public_ip:${aws_instance.MyLinuxNginx.public_ip} >> ./ip_addresses.txt"
   }
 }
